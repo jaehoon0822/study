@@ -12,6 +12,7 @@ var spa = (function() {
     return { initModule: initModule };
 })();
 
+/*
 var spa2 = (function() {
     var initModule = function($container) {
         var btn = document.createElement('button');
@@ -48,3 +49,4 @@ var spa2 = (function() {
 
     return {initModule: initModule};
 })()
+*/
