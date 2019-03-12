@@ -135,10 +135,9 @@ spa.shell = (function(){
             _s_chat_previous, _s_chat_proposed,
             s_chat_proposed;
 
-            console.log('a: ',anchor_map_previous)
-        
         // 앵커 파싱 시도
-        try { anchor_map_proposed = $.uriAnchor.makeAnchorMap(); }
+        try { anchor_map_proposed = $.uriAnchor.makeAnchorMap(); 
+            console.log('b:', $.uriAnchor.makeAnchorMap()) }
         catch (error) {
             $.uriAnchor.setAnchor( anchor_map_previous, null, true );
             return false;
