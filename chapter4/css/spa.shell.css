@@ -73,8 +73,8 @@
     background: red;
     cursor: pointer;
     border-radius: 5px 0 0 0;
-    z-index: 1;
-}
+    z-index: 2; 
+ }
 .spa-shell-chat:hover {
     background: #a00;
 }
@@ -87,5 +87,5 @@
     margin-left: -200px;
     background: #fff;
     border-radius: 3px;
-    z-index: 2; 
+    z-index: 1; 
 }

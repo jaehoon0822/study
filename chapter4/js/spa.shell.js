@@ -144,6 +144,7 @@ spa.shell = (function(){
             return false;
         }
         stateMap.anchor_map = anchor_map_proposed;
+        console.log('anchor_map: ',stateMap.anchor_map)
 
         // 편의 변수
         _s_chat_previous = anchor_map_previous._s_chat;
@@ -174,8 +175,8 @@ spa.shell = (function(){
             changeAnchorPart({
                 chat: ( stateMap.is_chat_retracted ? 'open' : 'closed')
             });
-            console.log('cc: ', copyAnchorMap());
         }
+        console.log(window.history);
         return false;
     }
     /** Event handler end */
@@ -196,6 +197,10 @@ spa.shell = (function(){
         $.uriAnchor.configModule({
             schema_map: configMap.anchor_schema_map
         });
+
+        // 기능 모듈을 설정 및 초기화
+        spa.chat.configModule( {} );
+        spa.chat.initModule( jqueryMap.$chat );
 
         $(window)
             .bind( 'hashchange', onHashchange )
