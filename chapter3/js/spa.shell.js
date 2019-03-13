@@ -145,8 +145,8 @@ spa.shell = (function(){
         stateMap.anchor_map = anchor_map_proposed;
 
         // 편의 변수
-        _s_chat_previous = anchor_map_previous._s_chat;
         _s_chat_proposed = anchor_map_proposed._s_chat;
+        _s_chat_previous = anchor_map_previous._s_chat;
         // 변경된 경우 채팅 컴포넌트 조정을 시작
         if ( ! anchor_map_previous 
             || _s_chat_previous !== _s_chat_proposed) {

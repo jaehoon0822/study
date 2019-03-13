@@ -3,4 +3,4 @@
  * MODEL MODULE
  */
 
- spa.module = (function() { return {}; })();
+ spa.model = (function() { return {}; })();
