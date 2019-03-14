@@ -103,9 +103,59 @@ spa.chat = (function() {
 
         stateMap.px_per_em = px_per_em;
         stateMap.slider_closed_px = configMap.slider_closed_em * px_per_em;
-        stateMap.slider_opened_px = opened_height_em * px_per_em; jqueryMap.$sizer.css({
+        stateMap.slider_opened_px = opened_height_em * px_per_em;
+        jqueryMap.$sizer.css({
             height: ( opened_height_em - 2 ) * px_per_em
         });
+    }
+
+    setSliderPosition = function(position_type, callback) {
+        var
+            height_px,
+            animate_time,
+            slider_title,
+            toggle_text;
+        if (stateMap.position_type === position_type) {
+            return true;
+        }
+
+        switch ( position_type ) {
+            case 'opened':
+                height_px = stateMap.slider_opened_px;
+                animate_time = configMap.slider_open_time;
+                slider_title = configMap.slider_opened_title;
+                toggle_text = '=';
+            break;
+
+            case 'hidden':
+                height_px = 0;
+                animate_time = configMap.slider_open_time;
+                slider_title = '';
+                toggle_text = '+';
+            break;
+
+            case 'closed':
+                height_px = stateMap.slider_closed_px;
+                animate_time = configMap.slider_close_time;
+                slider_title = configMap.slider_closed_title;
+                toggle_text = '+';
+            break;
+
+            default: return false;
+        }
+
+        stateMap.position_type = '';
+        jqueryMap.$slider.animate(
+            {height: height_px},
+            animate_time,
+            function() {
+                jqueryMap.$toggle.prop( 'title', slider_title );
+                jqueryMap.$toggle.text( toggle_text );
+                stateMap.position_type = position_type;
+                if ( callback ) callback(jqueryMap.$slider);
+            }
+        )
+        return true;
     }
 
 
@@ -169,55 +219,6 @@ spa.chat = (function() {
         }
         return true;
     };
-
-    setSliderPosition = function(position_type, callback) {
-        var
-            height_px,
-            animate_time,
-            slider_title,
-            toggle_text;
-        if (stateMap.position_type === position_type) {
-            return true;
-        }
-
-        switch ( position_type ) {
-            case 'opened':
-                height_px = stateMap.slider_opened_px;
-                animate_time = configMap.slider_open_time;
-                slider_title = configMap.slider_opened_title;
-                toggle_text = '=';
-            break;
-
-            case 'hidden':
-                height_px = 0;
-                animate_time = configMap.slider_open_time;
-                slider_title = '';
-                toggle_text = '+';
-            break;
-
-            case 'closed':
-                height_px = stateMap.slider_closed_px;
-                animate_time = configMap.slider_close_time;
-                slider_title = configMap.slider_closed_title;
-                toggle_text = '+';
-            break;
-
-            default: return false;
-        }
-
-        stateMap.position_type = '';
-        jqueryMap.$slider.animate(
-            {height: height_px},
-            animate_time,
-            function() {
-                jqueryMap.$toggle.prop( 'title', slider_title );
-                jqueryMap.$toggle.text( toggle_text );
-                stateMap.position_type = position_type;
-                if ( callback ) callback(jqueryMap.$slider);
-            }
-        )
-        return true;
-    }
 
     return {
         setSliderPosition: setSliderPosition,
